@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/data/data/com.termux/files/usr/bin/bash
 # gpt made
 # This script clones a given repository into the zsh_custom/plugins directory and adds it to the plugins list in .zshrc
 # Usage: ./install_plugin.sh username/reponame
