@@ -42,6 +42,7 @@ video() {
     -S res,hdr,fps,vcodec:av01:h265:vp9.2:vp9:h264,vbr \
     --no-mtime
 }
+
 aria() {
   aria2c -x16 -d $DOWNLOADS \
     --on-download-complete "$HOME/bin/openfile" \
@@ -51,10 +52,16 @@ aria() {
 
 spot() {
   spotdl $url --output $MUSIC
+  exit
+}
+
+play_audio() {
+  mpv --no-video $url
+  exit
 }
 
 yt() {
-  method="$(termux-dialog sheet -v "ASMR,Music,Video,Clip" | jq '.index' -r)"
+  method="$(termux-dialog sheet -v "ASMR,Music,Video,Play in mpv" | jq '.index' -r)"
   case $method in
   0)
     asmr
@@ -64,6 +71,9 @@ yt() {
   ;;
   2)
     video
+  ;;
+  3)
+    play_audio
   ;;
   *)
     exit
