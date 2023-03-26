@@ -96,8 +96,14 @@ uns() {
   esac
 }
 
+# Enable extglob for regex
+shopt -s extglob
+
 # Check what site is being passed
 case $url in
+https://music.youtube.com/watch?v=+([a-zA-Z0-9_-])*)
+  music
+;;
 *youtube.com* | *youtu.be*)
   echo Download a yt vid
   yt
@@ -112,9 +118,6 @@ case $url in
 ;;
 *spotify*)
   spot
-;;
-*music.youtube*)
-  music
 ;;
 *)
   echo "unsupported site"
